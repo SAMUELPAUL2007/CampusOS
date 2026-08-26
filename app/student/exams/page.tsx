@@ -52,12 +52,10 @@ export default async function StudentExamsPage() {
 
   if (examsError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Exams &amp; Marks</h1>
-        <p className="text-destructive">
-          Failed to load exams: {examsError.message}
-        </p>
-      </div>
+      <AppShell role="student">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load exams." />
+        <p className="text-sm text-destructive">{examsError.message}</p>
+      </AppShell>
     );
   }
 
@@ -68,12 +66,10 @@ export default async function StudentExamsPage() {
 
   if (marksError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Exams &amp; Marks</h1>
-        <p className="text-destructive">
-          Failed to load marks: {marksError.message}
-        </p>
-      </div>
+      <AppShell role="student">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load marks." />
+        <p className="text-sm text-destructive">{marksError.message}</p>
+      </AppShell>
     );
   }
 
@@ -119,12 +115,10 @@ export default async function StudentExamsPage() {
   return (
     <AppShell role="student">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader
-            title="Exams & Marks"
-            subtitle={`Welcome, ${profile.full_name}`}
-          />
-        </div>
+        <PageHeader
+          title="Exams & Marks"
+          subtitle={`Welcome back, ${profile.full_name}`}
+        />
         <StudentExams exams={serializedExams} marks={serializedMarks} />
       </div>
     </AppShell>

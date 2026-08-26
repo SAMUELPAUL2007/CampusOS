@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { CalendarDays, CalendarCheck, FileText, GraduationCap, School } from "lucide-react";
 import { StatusBadge } from "@/components/shared/status-badge";
 import { createSupabaseServer } from "@/lib/supabase/server";
@@ -72,12 +73,10 @@ export default async function StudentPage() {
 
   if (enrollError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Student Dashboard</h1>
-        <p className="text-destructive">
-          Failed to load enrollments: {enrollError.message}
-        </p>
-      </div>
+      <AppShell role="student">
+        <PageHeader title="Student Dashboard" subtitle="Failed to load enrollments." />
+        <p className="text-sm text-destructive">{enrollError.message}</p>
+      </AppShell>
     );
   }
 
@@ -288,12 +287,12 @@ export default async function StudentPage() {
         <section className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold tracking-tight">Today&apos;s Classes</h2>
-            <a
+            <Link
               href="/student/timetable"
               className="text-sm font-medium text-primary hover:underline"
             >
               View Full Timetable
-            </a>
+            </Link>
           </div>
           {todaysClasses.length === 0 ? (
             <EmptyState
@@ -349,12 +348,12 @@ export default async function StudentPage() {
       <section className="space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-semibold tracking-tight">Attendance</h2>
-          <a
+          <Link
             href="/student/attendance"
             className="text-sm font-medium text-primary hover:underline"
           >
             View Attendance
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           <StatCard
@@ -386,12 +385,12 @@ export default async function StudentPage() {
       <section className="space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-semibold tracking-tight">Recent Attendance</h2>
-          <a
+          <Link
             href="/student/attendance"
             className="text-sm font-medium text-primary hover:underline"
           >
             View all attendance
-          </a>
+          </Link>
         </div>
         {recentAttendance.length === 0 ? (
           <EmptyState
@@ -427,12 +426,12 @@ export default async function StudentPage() {
       <section className="space-y-3">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-semibold tracking-tight">Upcoming Exams</h2>
-          <a
+          <Link
             href="/student/exams"
             className="text-sm font-medium text-primary hover:underline"
           >
             View all exams
-          </a>
+          </Link>
         </div>
         {upcomingExams.length === 0 ? (
           <EmptyState

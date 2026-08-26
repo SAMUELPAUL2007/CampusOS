@@ -524,7 +524,7 @@ export default function AdminClassManagement() {
           </Button>
         </DialogContent>
       </Dialog>
-    
+
       <AlertDialog
         open={pendingConfirm !== null}
         onOpenChange={(open) => {

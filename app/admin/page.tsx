@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { CalendarDays, ClipboardCheck, FileText, GraduationCap, School, UserCog, Users } from "lucide-react";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import AdminClassManagement from "@/components/AdminClassManagement";
@@ -175,12 +176,12 @@ export default async function AdminPage() {
         <section className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold tracking-tight">Today&apos;s Schedule</h2>
-            <a
+            <Link
               href="/admin/timetable"
               className="text-sm font-medium text-primary hover:underline"
             >
               View Full Timetable
-            </a>
+            </Link>
           </div>
           {todaysSchedule.length === 0 ? (
             <EmptyState
@@ -221,12 +222,12 @@ export default async function AdminPage() {
         <section className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold tracking-tight">Recent Exams</h2>
-            <a
+            <Link
               href="/admin/exams"
               className="text-sm font-medium text-primary hover:underline"
             >
               View all exams
-            </a>
+            </Link>
           </div>
           {recentExams.length === 0 ? (
             <EmptyState

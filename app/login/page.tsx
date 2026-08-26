@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { GraduationCap } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -60,8 +61,16 @@ export default function LoginPage() {
 
   return (
     <div className={cn("flex min-h-screen items-center justify-center p-4")}>
-      <form onSubmit={handleLogin} className={cn("w-full max-w-sm space-y-4")}>
-        <h2 className="text-center text-2xl font-semibold">Login</h2>
+      <form onSubmit={handleLogin} className={cn("w-full max-w-sm space-y-6")}>
+        <div className="flex flex-col items-center gap-3">
+          <span className="flex size-12 items-center justify-center rounded-2xl bg-primary text-primary-foreground">
+            <GraduationCap className="size-7" />
+          </span>
+          <div className="text-center">
+            <h1 className="text-2xl font-semibold tracking-tight">CampusOS</h1>
+            <p className="text-sm text-muted-foreground">Academic Portal</p>
+          </div>
+        </div>
         {error && <p className="text-sm text-destructive text-center">{error}</p>}
         <div className="space-y-1.5">
           <label htmlFor="login-email" className="text-sm font-medium">
@@ -102,7 +111,7 @@ export default function LoginPage() {
           )}
           {loading ? "Logging in…" : "Login"}
         </Button>
-        <p className="text-center text-sm text-muted-foreground">
+        <p className="text-center text-xs text-muted-foreground">
           Contact your administrator to create an account.
         </p>
       </form>

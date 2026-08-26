@@ -45,12 +45,10 @@ export default async function AdminTimetablePage() {
   return (
     <AppShell role="admin">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader
-            title="Timetable Management"
-            subtitle="Create, edit and delete weekly schedule entries per class."
-          />
-        </div>
+        <PageHeader
+          title="Timetable Management"
+          subtitle="Create, edit and delete weekly schedule entries per class."
+        />
         <AdminTimetable />
       </div>
     </AppShell>

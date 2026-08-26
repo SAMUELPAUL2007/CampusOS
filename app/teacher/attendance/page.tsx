@@ -84,9 +84,7 @@ export default async function TeacherAttendancePage() {
   return (
     <AppShell role="teacher">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader title="Attendance" subtitle="Browse days, take or correct attendance per session." />
-        </div>
+        <PageHeader title="Attendance" subtitle="Browse days, take or correct attendance per session." />
         <TeacherDailyAttendance entries={entries} />
       </div>
     </AppShell>

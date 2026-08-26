@@ -4,6 +4,7 @@ import AccessDenied from "@/components/AccessDenied";
 import { CalendarDays } from "lucide-react";
 import { EmptyState } from "@/components/shared/empty-state";
 import { AppShell } from "@/components/shared/app-shell";
+import { PageHeader } from "@/components/shared/page-header";
 import {
   DAY_NAMES,
   formatRange,
@@ -80,12 +81,10 @@ export default async function StudentTimetablePage() {
   return (
     <AppShell role="student">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <h1 className="text-2xl font-semibold tracking-tight">My Timetable</h1>
-          <p className="text-sm text-muted-foreground">
-            {className ?? "No enrolled class"}
-          </p>
-        </div>
+        <PageHeader
+          title="My Timetable"
+          subtitle={className ?? "No enrolled class"}
+        />
 
         {!enrollment || entries.length === 0 ? (
           <EmptyState

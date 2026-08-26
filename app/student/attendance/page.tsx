@@ -82,9 +82,7 @@ export default async function StudentAttendancePage() {
     <AppShell role="student">
       <AttendanceRealtimeRefresher studentId={userId} />
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader title="My Attendance" subtitle="Subject-wise and daily attendance history." />
-        </div>
+        <PageHeader title="My Attendance" subtitle="Subject-wise and daily attendance history." />
         <StudentAttendanceView records={records} />
       </div>
     </AppShell>

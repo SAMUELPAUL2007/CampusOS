@@ -66,23 +66,19 @@ export default async function AdminExamsPage() {
 
   if (classesError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Admin Exams</h1>
-        <p className="text-destructive">
-          Failed to load classes: {classesError.message}
-        </p>
-      </div>
+      <AppShell role="admin">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load classes." />
+        <p className="text-sm text-destructive">{classesError.message}</p>
+      </AppShell>
     );
   }
 
   if (enrollmentsError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Admin Exams</h1>
-        <p className="text-destructive">
-          Failed to load enrollments: {enrollmentsError.message}
-        </p>
-      </div>
+      <AppShell role="admin">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load enrollments." />
+        <p className="text-sm text-destructive">{enrollmentsError.message}</p>
+      </AppShell>
     );
   }
 
@@ -152,12 +148,10 @@ export default async function AdminExamsPage() {
   return (
     <AppShell role="admin">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader
-            title="Exams & Marks"
-            subtitle={`Welcome, ${profile.full_name}`}
-          />
-        </div>
+        <PageHeader
+          title="Exams & Marks"
+          subtitle={`Welcome back, ${profile.full_name}`}
+        />
         <AdminExams classes={classList} exams={examList} marks={markList} />
       </div>
     </AppShell>

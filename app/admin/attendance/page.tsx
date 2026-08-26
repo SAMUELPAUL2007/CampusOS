@@ -50,12 +50,10 @@ export default async function AdminAttendancePage() {
   return (
     <AppShell role="admin">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader
-            title="Attendance Management"
-            subtitle="Daily, subject-wise attendance per class session."
-          />
-        </div>
+        <PageHeader
+          title="Attendance Management"
+          subtitle="Daily, subject-wise attendance per class session."
+        />
         <AdminDailyAttendance classes={(classes as { id: string; name: string }[]) ?? []} />
       </div>
     </AppShell>

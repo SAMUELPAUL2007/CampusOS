@@ -73,9 +73,7 @@ export default async function TeacherTimetablePage() {
   return (
     <AppShell role="teacher">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader title="My Timetable" subtitle="Your weekly teaching schedule." />
-        </div>
+        <PageHeader title="My Timetable" subtitle="Your weekly teaching schedule." />
 
         {entries.length === 0 ? (
           <EmptyState

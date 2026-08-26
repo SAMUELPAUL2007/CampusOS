@@ -50,7 +50,7 @@ export function FormMessage({
       )}
     >
       <Icon className="mt-0.5 size-4 shrink-0" aria-hidden />
-      <span>{children}</span>
+      <span className="whitespace-pre-line">{children}</span>
     </p>
   )
 }

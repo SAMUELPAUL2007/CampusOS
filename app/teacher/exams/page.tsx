@@ -59,12 +59,10 @@ export default async function TeacherExamsPage() {
 
   if (classesError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Teacher Exams</h1>
-        <p className="text-destructive">
-          Failed to load classes: {classesError.message}
-        </p>
-      </div>
+      <AppShell role="teacher">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load classes." />
+        <p className="text-sm text-destructive">{classesError.message}</p>
+      </AppShell>
     );
   }
 
@@ -74,12 +72,10 @@ export default async function TeacherExamsPage() {
 
   if (examsError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Teacher Exams</h1>
-        <p className="text-destructive">
-          Failed to load exams: {examsError.message}
-        </p>
-      </div>
+      <AppShell role="teacher">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load exams." />
+        <p className="text-sm text-destructive">{examsError.message}</p>
+      </AppShell>
     );
   }
 
@@ -87,12 +83,10 @@ export default async function TeacherExamsPage() {
 
   if (marksError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Teacher Exams</h1>
-        <p className="text-destructive">
-          Failed to load marks: {marksError.message}
-        </p>
-      </div>
+      <AppShell role="teacher">
+        <PageHeader title="Exams & Marks" subtitle="Failed to load marks." />
+        <p className="text-sm text-destructive">{marksError.message}</p>
+      </AppShell>
     );
   }
 
@@ -165,12 +159,7 @@ export default async function TeacherExamsPage() {
   return (
     <AppShell role="teacher">
       <div className="space-y-6">
-        <div className="space-y-1">
-          <PageHeader title="Exams & Marks" />
-          <p className="text-sm text-muted-foreground">
-            Welcome, {profile.full_name}
-          </p>
-        </div>
+        <PageHeader title="Exams & Marks" subtitle={`Welcome back, ${profile.full_name}`} />
         <TeacherExams classes={classList} exams={examList} marks={markList} />
       </div>
     </AppShell>

@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { CalendarDays, ClipboardCheck, FileText, School, Users } from "lucide-react";
 import { createSupabaseServer } from "@/lib/supabase/server";
 import LogoutButton from "@/components/LogoutButton";
@@ -69,12 +70,10 @@ export default async function TeacherPage() {
 
   if (classesError) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-start p-6 gap-6">
-        <h1 className="text-3xl font-bold">Teacher Dashboard</h1>
-        <p className="text-destructive">
-          Failed to load classes: {classesError.message}
-        </p>
-      </div>
+      <AppShell role="teacher">
+        <PageHeader title="Teacher Dashboard" subtitle="Failed to load classes." />
+        <p className="text-sm text-destructive">{classesError.message}</p>
+      </AppShell>
     );
   }
 
@@ -227,12 +226,12 @@ export default async function TeacherPage() {
         <section className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold tracking-tight">My Schedule Today</h2>
-            <a
+            <Link
               href="/teacher/timetable"
               className="text-sm font-medium text-primary hover:underline"
             >
               View Full Timetable
-            </a>
+            </Link>
           </div>
           {todaysSchedule.length === 0 ? (
             <EmptyState
@@ -316,12 +315,12 @@ export default async function TeacherPage() {
         <section className="space-y-3">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-semibold tracking-tight">Upcoming Exams</h2>
-            <a
+            <Link
               href="/teacher/exams"
               className="text-sm font-medium text-primary hover:underline"
             >
               View all exams
-            </a>
+            </Link>
           </div>
           {upcomingExams.length === 0 ? (
             <EmptyState

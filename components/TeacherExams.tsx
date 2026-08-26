@@ -363,27 +363,33 @@ export default function TeacherExams({
       const obtainedNum = Number(obtained);
       const maxNum = Number(max);
 
+      if (obtained === "" || max === "") {
+        validationErrors.push(
+          `${entry.full_name || "A student"}: both marks obtained and max marks are required.`,
+        );
+        continue;
+      }
       if (isNaN(obtainedNum) || isNaN(maxNum)) {
         validationErrors.push(
-          `${entry.full_name}: marks must be valid numbers.`,
+          `${entry.full_name || "A student"}: marks must be valid numbers.`,
         );
         continue;
       }
       if (obtainedNum < 0) {
         validationErrors.push(
-          `${entry.full_name}: marks obtained cannot be negative.`,
+          `${entry.full_name || "A student"}: marks obtained cannot be negative.`,
         );
         continue;
       }
       if (maxNum <= 0) {
         validationErrors.push(
-          `${entry.full_name}: max marks must be greater than 0.`,
+          `${entry.full_name || "A student"}: max marks must be greater than 0.`,
         );
         continue;
       }
       if (obtainedNum > maxNum) {
         validationErrors.push(
-          `${entry.full_name}: marks obtained cannot exceed max marks.`,
+          `${entry.full_name || "A student"}: marks obtained (${obtainedNum}) cannot exceed max marks (${maxNum}).`,
         );
         continue;
       }
@@ -397,7 +403,7 @@ export default function TeacherExams({
     }
 
     if (validationErrors.length > 0) {
-      setError(validationErrors.join(" "));
+      setError(validationErrors.join("\n"));
       setSavingMarks(false);
       return;
     }
@@ -411,7 +417,15 @@ export default function TeacherExams({
         const { error: upsertError } = await supabase
           .from("marks")
           .upsert(rows, { onConflict: "exam_id,student_id" });
-        if (upsertError) throw upsertError;
+        if (upsertError) {
+          const msg = (upsertError.message ?? "").toLowerCase();
+          if (msg.includes("duplicate key") || msg.includes("23505")) {
+            setError("Some marks already exist for this exam. Please refresh and try again.");
+          } else {
+            throw upsertError;
+          }
+          return;
+        }
       }
 
       setSuccess("Marks saved successfully.");
